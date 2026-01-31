@@ -1,0 +1,105 @@
+basePath: /api
+definitions:
+  types.DatabaseConfig:
+    properties:
+      type:
+        description: '"postgres", "mysql", "mongodb", "none"'
+        type: string
+    type: object
+  types.GenerateRequest:
+    properties:
+      database:
+        $ref: '#/definitions/types.DatabaseConfig'
+      deployment:
+        description: '"railway", "local", "docker"'
+        type: string
+      libraries:
+        items:
+          type: string
+        type: array
+      modulePath:
+        type: string
+      name:
+        type: string
+      structure:
+        description: '"simple" or "standard"'
+        type: string
+    type: object
+  types.GenerateResponse:
+    properties:
+      downloadUrl:
+        type: string
+      error:
+        type: string
+      fileName:
+        type: string
+      message:
+        type: string
+      success:
+        type: boolean
+    type: object
+host: localhost:8080
+info:
+  contact:
+    email: support@swagger.io
+    name: API Support
+    url: http://www.swagger.io/support
+  description: REST API for Go project generator with 10 production libraries
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
+  termsOfService: http://swagger.io/terms/
+  title: Go Starter API
+  version: 1.0.0
+paths:
+  /generate:
+    post:
+      consumes:
+      - application/json
+      description: Generates a new Go project with selected libraries and configuration,
+        returns a ZIP file
+      parameters:
+      - description: Project configuration
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/types.GenerateRequest'
+      produces:
+      - application/zip
+      responses:
+        "200":
+          description: ZIP file download
+          schema:
+            type: file
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/types.GenerateResponse'
+        "500":
+          description: Internal server error
+          schema:
+            $ref: '#/definitions/types.GenerateResponse'
+      summary: Generate a new Go project
+      tags:
+      - Generator
+  /libraries:
+    get:
+      consumes:
+      - application/json
+      description: Returns a list of all 10 production Go libraries with their metadata
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: success, data (array of Library), count
+          schema:
+            additionalProperties: true
+            type: object
+      summary: Get all available libraries
+      tags:
+      - Libraries
+schemes:
+- http
+- https
+swagger: "2.0"
