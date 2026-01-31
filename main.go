@@ -2,6 +2,7 @@ package main
 
 import (
 	"log"
+	"time"
 
 	"github.com/OkanUysal/go-logger"
 	"github.com/OkanUysal/go-metrics"
@@ -10,6 +11,7 @@ import (
 
 	_ "github.com/OkanUysal/go-starter-api/docs" // Import generated docs
 	"github.com/OkanUysal/go-starter-api/handlers"
+	"github.com/OkanUysal/go-starter-api/utils"
 
 	docs "github.com/OkanUysal/go-starter-api/docs" // Explicit import for SwaggerInfo
 )
@@ -39,6 +41,10 @@ func main() {
 		Format: logger.FormatJSON,
 	}
 	logger.SetDefault(logger.New(loggerConfig))
+
+	// Start cleanup routine for temp files (remove files older than 1 hour, check every 30 minutes)
+	utils.StartCleanupRoutine("temp", 1*time.Hour, 30*time.Minute)
+	logger.Info("Cleanup routine started", logger.String("dir", "temp"), logger.String("maxAge", "1h"))
 
 	// Initialize metrics
 	metricsInstance = metrics.NewMetrics(&metrics.Config{
