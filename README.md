@@ -153,6 +153,32 @@ docker build -t go-starter-api .
 docker run -p 8080:8080 go-starter-api
 ```
 
+## 📊 Grafana Cloud Integration
+
+To push metrics to Grafana Cloud, set these environment variables:
+
+```bash
+# Railway environment variables
+GRAFANA_CLOUD_URL=https://prometheus-prod-01-eu-west-0.grafana.net/api/prom/push
+GRAFANA_CLOUD_USER=123456                    # Your Grafana Cloud instance ID
+GRAFANA_CLOUD_KEY=glc_xxxxxxxxxxxxxxxxxxxxx  # Your Grafana Cloud API key
+```
+
+**Get credentials:**
+1. Go to https://grafana.com
+2. Select your stack
+3. Click "Details" on Prometheus card
+4. Click "Send Metrics" → Copy push URL, instance ID, and API key
+
+**Metrics pushed every 15 seconds:**
+- `http_requests_total` - Total HTTP requests by method, path, status
+- `http_request_duration_seconds` - Request duration histogram
+- `http_requests_in_flight` - Current requests being processed
+- `libraries_requested_total` - Library list requests
+- `project_generated_total` - Projects generated (success/failed)
+
+**Optional:** If variables not set, metrics are only available at `/metrics` endpoint.
+
 ## 🤝 Integration with Flutter Web
 
 ```dart

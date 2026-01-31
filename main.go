@@ -2,6 +2,7 @@ package main
 
 import (
 	"log"
+	"os"
 	"time"
 
 	"github.com/OkanUysal/go-logger"
@@ -46,10 +47,21 @@ func main() {
 	utils.StartCleanupRoutine("temp", 1*time.Hour, 30*time.Minute)
 	logger.Info("Cleanup routine started", logger.String("dir", "temp"), logger.String("maxAge", "1h"))
 
-	// Initialize metrics
-	metricsInstance = metrics.NewMetrics(&metrics.Config{
+	// Initialize metrics with optional Grafana Cloud push
+	metricsConfig := &metrics.Config{
 		ServiceName: "go-starter-api",
-	})
+	}
+
+	// Enable Grafana Cloud push if credentials are provided
+	if grafanaURL := os.Getenv("GRAFANA_CLOUD_URL"); grafanaURL != "" {
+		metricsConfig.GrafanaCloudURL = grafanaURL
+		metricsConfig.GrafanaCloudUser = os.Getenv("GRAFANA_CLOUD_USER")
+		metricsConfig.GrafanaCloudAPIKey = os.Getenv("GRAFANA_CLOUD_KEY")
+		metricsConfig.PushInterval = 1 * time.Minute
+		logger.Info("Grafana Cloud push enabled", logger.String("url", grafanaURL))
+	}
+
+	metricsInstance = metrics.NewMetrics(metricsConfig)
 
 	// Initialize Gin
 	gin.SetMode(gin.ReleaseMode)
