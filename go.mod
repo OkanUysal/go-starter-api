@@ -6,7 +6,7 @@ toolchain go1.24.12
 
 require (
 	github.com/OkanUysal/go-logger v1.0.1
-	github.com/OkanUysal/go-metrics v1.2.1
+	github.com/OkanUysal/go-metrics v1.3.0
 	github.com/OkanUysal/go-swagger v1.1.1
 	github.com/gin-gonic/gin v1.11.0
 	github.com/swaggo/swag v1.16.6

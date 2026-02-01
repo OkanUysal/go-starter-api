@@ -2,8 +2,8 @@ github.com/KyleBanks/depth v1.2.1 h1:5h8fQADFrWtarTdtDudMmGsC7GPbOAu6RVB3ffsVFHc
 github.com/KyleBanks/depth v1.2.1/go.mod h1:jzSb9d0L43HxTQfT+oSA1EEp2q+ne2uh6XgeJcm8brE=
 github.com/OkanUysal/go-logger v1.0.1 h1:j4DeeuYUWnriDwSYCFNKR24/ZQPlCP+vz0wdbIpPpYU=
 github.com/OkanUysal/go-logger v1.0.1/go.mod h1:pcvTcWwIk/7tpblMgoHxVc5gT5vh1ic0235apFOIDIg=
-github.com/OkanUysal/go-metrics v1.2.1 h1:oNIGodFrEyIAV0dmdOnnd5CgBotbJFgJ+pNxdgMM/hM=
-github.com/OkanUysal/go-metrics v1.2.1/go.mod h1:7OPOOgjcStq/2G5lfhjDT+AoQ5ex3JefZwo7OJjBuYQ=
+github.com/OkanUysal/go-metrics v1.3.0 h1:eR2kIQfJJFoBRDWReOf9Pe3rh4pW477POxRspnWTB7c=
+github.com/OkanUysal/go-metrics v1.3.0/go.mod h1:7OPOOgjcStq/2G5lfhjDT+AoQ5ex3JefZwo7OJjBuYQ=
 github.com/OkanUysal/go-swagger v1.1.1 h1:hFd13/MzbjeRFHHYmKBIa3myVRZ41edWAe/gfko1ms8=
 github.com/OkanUysal/go-swagger v1.1.1/go.mod h1:HhhMdJUHmnKvxsaPOFHOYnoExt1yHs1L6t1LcGpa+PA=
 github.com/beorn7/perks v1.0.1 h1:VlbKKnNfV8bJzeqoa4cOKqO6bYr3WgKZxO8Z16+hsOM=
